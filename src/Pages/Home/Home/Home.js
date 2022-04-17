@@ -20,8 +20,9 @@ const Home = () => {
                 </div >
             </div>
             <About></About>
-            <Services></Services>
-
+            <div id='services'>
+                <Services></Services>
+            </div>
         </>
     );
 };

@@ -6,13 +6,13 @@ const Header = () => {
     return (
         <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand as={Link} to="/home">
                     <img style={{ width: '150px' }} src={logo} alt="" />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto">
-                        <Nav.Link as={Link} to="home#services">Services</Nav.Link>
+                        <Nav.Link href="/home#services">Services</Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link as={Link} to="/blogs">Blogs</Nav.Link>
