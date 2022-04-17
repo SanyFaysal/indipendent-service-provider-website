@@ -1,12 +1,11 @@
-import { faCopyright } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import React from 'react';
 
 const Footer = () => {
-
+    const year = new Date().getFullYear()
     return (
-        <div className='my-5'>
-            <small className='text-center  my-4'>Copy right <FontAwesomeIcon icon={faCopyright}></FontAwesomeIcon></small>
+        <div className='w-100 mx-auto text-center py-3 bg-warning  bg-opacity-25 text-dark'>
+            <small className='text-center  my-4'>Copy right © {year}</small>
         </div>
     );
 };
