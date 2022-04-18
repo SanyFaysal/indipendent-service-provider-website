@@ -23,7 +23,7 @@ const Header = () => {
                     </Nav>
                     <Nav>
                         <Nav.Link as={Link} to="/blogs">Blogs</Nav.Link>
-                        <Nav.Link as={Link} to="/about">About</Nav.Link>
+                        <Nav.Link as={Link} to="/about" className='me-2'>About Me</Nav.Link>
                         {!user ? <Nav.Link as={Link} to="/login">Login</Nav.Link> : <p onClick={handleSignOut} className='my-auto d-inline text-white text-opacity-50'>Log Out</p>}
                     </Nav>
                 </Navbar.Collapse>

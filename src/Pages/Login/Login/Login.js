@@ -1,17 +1,22 @@
 import React, { useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Loading from '../../../Shared/Loading/Loading';
 
 const Login = () => {
     const emailRef = useRef('')
+    const location = useLocation();
+    const navigate = useNavigate()
     const [checked, setChecked] = useState(false);
     const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, error1] = useSendPasswordResetEmail(auth);
+
+    let from = location.state?.from?.pathname || '/';
 
     const handleLogin = event => {
         event.preventDefault();
@@ -29,6 +34,12 @@ const Login = () => {
         else {
             toast('Please give your email')
         }
+    }
+    if (user) {
+        navigate(from, { replace: true });
+    }
+    if (loading || sending) {
+        return <Loading></Loading>
     }
     return (
         <div className='row mb-5 h-100 '>
@@ -55,7 +66,7 @@ const Login = () => {
                     <span className='text-decoration-none text-danger fw-bold btn btn-link' onClick={resetPassword}>Reset Password</span>
                 </div>
 
-                {error && <p className='text-danger text-center'>{error.message}</p>}
+                {(error || error1) && <p className='text-danger text-center'>{error.message}</p>}
                 <SocialLogin></SocialLogin>
                 <ToastContainer></ToastContainer>
             </div>

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../Login/SocialLogin/SocialLogin';
 
 const Register = () => {
     const [agree, setAgree] = useState(false);
-    const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const navigate = useNavigate('')
+    const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const handleRegister = (event) => {
         event.preventDefault()
-        const name = event.target.name.value;
         let email = event.target.email.value;
         let password = event.target.password.value;
         createUserWithEmailAndPassword(email, password)
@@ -19,7 +19,9 @@ const Register = () => {
     if (user) {
         navigate('/home')
     }
-
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <div className='row mb-5 h-100 '>
             <div className='col col-lg-6 col-md-6 col-sm-12 col-12 shadow mx-auto border bg-secondary  bg-opacity-10 rounded rounded-2 px-5 pb-4'>
