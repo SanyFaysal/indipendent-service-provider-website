@@ -1,33 +1,63 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../../firebase.init';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from '../SocialLogin/SocialLogin';
+
 const Login = () => {
+    const emailRef = useRef('')
+    const [checked, setChecked] = useState(false);
+    const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, error1] = useSendPasswordResetEmail(auth);
+
+    const handleLogin = event => {
+        event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        signInWithEmailAndPassword(email, password)
+    }
+
+    const resetPassword = async () => {
+        const email = emailRef.current.value
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email ')
+        }
+        else {
+            toast('Please give your email')
+        }
+    }
     return (
         <div className='row mb-5 h-100 '>
             <div className='col col-lg-6 col-md-6 col-sm-12 col-12 shadow mx-auto border bg-secondary  bg-opacity-10 rounded rounded-2 px-5 py-3'>
                 <h2 className='text-center'>Please Login</h2>
-                <Form>
+                <Form onSubmit={handleLogin}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" required />
+                        <Form.Control ref={emailRef} type="email" placeholder="Enter email" name='email' required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" required />
+                        <Form.Control type="password" placeholder="Password" name='password' required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Accept terms and condition" />
+                        <Form.Check onClick={() => setChecked(!checked)} type="checkbox" className={`${checked ? 'text-success' : 'text-danger'}`} label="Accept terms and condition" />
                     </Form.Group>
-                    <Button variant="primary" type="submit" className='w-100 rounded-pill'>
+                    <Button disabled={!checked} variant="primary" type="submit" className='w-100 rounded-pill'>
                         Login
                     </Button>
-                    <div className='d-flex justify-content-between  my-2'>
-                        <Link to='/register' className='text-decoration-none fw-bold text-success'>Create an Account</Link>
-                        <span className='text-decoration-none text-danger fw-bold'>Reset Password</span>
-                    </div>
                 </Form>
+                <div className='d-flex justify-content-between  my-2'>
+                    <Link to='/register' className='text-decoration-none fw-bold text-success'>Create an Account</Link>
+                    <span className='text-decoration-none text-danger fw-bold btn btn-link' onClick={resetPassword}>Reset Password</span>
+                </div>
+
+                {error && <p className='text-danger text-center'>{error.message}</p>}
                 <SocialLogin></SocialLogin>
+                <ToastContainer></ToastContainer>
             </div>
         </div>
     );
