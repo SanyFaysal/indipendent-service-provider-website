@@ -1,6 +1,6 @@
 # MathMan
 
-# Project live Site [Math Man](https://github.com/facebook/create-react-app).
+# Project live Site [Math Man](https://tiny-kitsune-8dcd70.netlify.app/home).
 
 ## In this project , there are -
 * A Home Component Where have a banner about Math Man 
