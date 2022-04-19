@@ -2,12 +2,12 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import NotFound from './NotFound/NotFound';
+import AboutMe from './Pages/AboutMe/AboutMe';
 import Blogs from './Pages/Blogs/Blogs';
 import CheckOut from './Pages/CheckOut/CheckOut';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Register/Register';
-import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
 import RequiredAuth from './Shared/RequiredAuth/RequiredAuth';
 
@@ -26,9 +26,10 @@ function App() {
           </RequiredAuth>}>
         </Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+        <Route path='/about' element={<AboutMe></AboutMe>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
-      <Footer></Footer>
+
     </div>
   );
 }

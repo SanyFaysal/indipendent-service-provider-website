@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import Loading from '../../../Shared/Loading/Loading';
+import Footer from '../../../Shared/Footer/Footer';
 
 const Login = () => {
     const emailRef = useRef('')
@@ -42,8 +43,8 @@ const Login = () => {
         return <Loading></Loading>
     }
     return (
-        <div className='row mb-5 h-100 '>
-            <div className='col col-lg-6 col-md-6 col-sm-12 col-12 shadow mx-auto border bg-secondary  bg-opacity-10 rounded rounded-2 px-5 py-3'>
+        <div className='row  h-100 '>
+            <div className='col col-lg-6 mb-5 col-md-6 col-sm-12 col-12 shadow mx-auto border bg-secondary  bg-opacity-10 rounded rounded-2 px-5 py-3'>
                 <h2 className='text-center'>Please Login</h2>
                 <Form onSubmit={handleLogin}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -70,6 +71,7 @@ const Login = () => {
                 <SocialLogin></SocialLogin>
                 <ToastContainer></ToastContainer>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

@@ -4,10 +4,10 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div className='bg-info bg-opacity-10'>
-            <h2 className='text-center text-warning'>Who Am I ..?</h2>
+        <div>
+            <h2 className='text-center text-info mt-2'>Who Am I ..?</h2>
             <div className='d-flex container mx-auto row d-flex justify-content-evenly align-items-center'>
-                <div className='col-lg-6 col-md-6 col-sm-12 col-12  w-full'>
+                <div className='col-lg-6 col-md-6 col-sm-12 col-12 '>
                     <p>An experienced mathematics teacher who khows the methodology of teaching mathematics in
                         high school. I have been preparing my graduation from Bhawyal Bodre Alam Govt College
                         in Mathematics. I try to serve them a sound knowledge of mathematics, promotes mathematical understanding,

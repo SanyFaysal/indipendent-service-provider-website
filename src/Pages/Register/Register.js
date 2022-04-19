@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Footer from '../../Shared/Footer/Footer';
 import Loading from '../../Shared/Loading/Loading';
 import SocialLogin from '../Login/SocialLogin/SocialLogin';
 
@@ -23,7 +24,7 @@ const Register = () => {
         return <Loading></Loading>
     }
     return (
-        <div className='row mb-5 h-100 '>
+        <div className='row h-100 '>
             <div className='col col-lg-6 col-md-6 col-sm-12 col-12 shadow mx-auto border bg-secondary  bg-opacity-10 rounded rounded-2 px-5 pb-4'>
                 <h2 className='text-center'>Register Account</h2>
                 <Form onSubmit={handleRegister}>
@@ -52,6 +53,7 @@ const Register = () => {
                 {error && <p className='text-danger text-center'>{error.message} </p>}
                 <SocialLogin></SocialLogin>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

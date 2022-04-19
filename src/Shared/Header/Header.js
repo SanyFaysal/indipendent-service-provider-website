@@ -5,6 +5,7 @@ import logo from '../../Images/Logo/mathman.png'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init'
 import { signOut } from 'firebase/auth';
+import CustomLink from '../CustomLink/CustomLink';
 const Header = () => {
     const [user, loading, error] = useAuthState(auth)
     const handleSignOut = () => {
@@ -19,12 +20,13 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto">
-                        <Nav.Link href="/home#services">Services</Nav.Link>
+                        <Nav.Link as={CustomLink} to="/home">Home</Nav.Link>
+                        <Nav.Link href="/home#services" style={{ color: '#E5E4E2' }}>Services</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link as={Link} to="/blogs">Blogs</Nav.Link>
-                        <Nav.Link as={Link} to="/about" className='me-2'>About Me</Nav.Link>
-                        {!user ? <Nav.Link as={Link} to="/login">Login</Nav.Link> : <p onClick={handleSignOut} className='my-auto d-inline text-white text-opacity-50'>Log Out</p>}
+                        <Nav.Link as={CustomLink} to="/blogs">Blogs</Nav.Link>
+                        <Nav.Link as={CustomLink} to="/about" className='me-2'>About Me</Nav.Link>
+                        {!user ? <Nav.Link as={CustomLink} to="/login">Login</Nav.Link> : <p onClick={handleSignOut} className='my-auto d-inline text-white text-opacity-50'>Log Out</p>}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
