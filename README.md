@@ -1,8 +1,25 @@
-# Getting Started with Create React App
+# MathMan
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project live Site [Math Man](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## In this project , there are -
+* A Home Component Where have a banner about Math Man 
+* A Service Component to show all the services Math Man provides
+* A Login Page Where can any one sign in his/ account into Math Man
+* If he is a new user then he can register a new account by register form component 
+* A blog component about some answering  question 
+* An About me component to show About the Developer of this site 
+* A Checkout component that is protected for booking any user 
+
+# Following Technologies those are used in this projects :
+* Create-React-App 
+* React Bootstrap
+* React Router 
+* Firebase 
+* React firebase hook
+* React tostify
+* React Spring 
+
 
 In the project directory, you can run:
 

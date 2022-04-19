@@ -5,9 +5,17 @@ import facebook from '../../../Images/social/facebook.png';
 import github from '../../../Images/social/github.png'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import auth from '../../../firebase.init';
+import { useNavigate } from 'react-router-dom';
+import Loading from '../../../Shared/Loading/Loading';
 const SocialLogin = () => {
+    const navigate = useNavigate()
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-
+    if (user) {
+        navigate('/home')
+    }
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <div className='w-100 mx-auto mt-3'>
             <div className='mb-3'>
